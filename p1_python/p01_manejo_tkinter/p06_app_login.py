@@ -6,14 +6,28 @@ ven = tk.Tk()
 ven.geometry('300x250')
 ven.resizable(0,0)
 ven.title('Login')
-ven.configure(background = '#188888')
+ven.configure(background = '#888888')
 
 ven.columnconfigure(0, weight = 1)
 ven.rowconfigure(0, weight = 1)
 
+# Creacion Un Estilo
+estilo = ttk.Style()
+estilo.theme_use('clam')
+estilo.configure(ven, background = "#288888", foreground = 'white', fieldbackground = 'black')
+
+
 # Funcion
-def enviar():
-    pass
+def enviar(event):
+    v_user = txbox_user.get()
+    v_pass = txbox_pass.get()
+    # User -> Basy
+    # Password -> Loca_Number_1
+    if v_user == 'Basy' and v_pass == 'Loca_Number_1':
+        showinfo(title = 'Login', message = 'Correct Start!')
+    else:
+        showwarning(title = 'Error', message = 'Data Invalid!')
+    print ( 'Hi')
 
 # Crear, configura y agrega Frame
 frame = ttk.Frame(ven)
@@ -39,8 +53,12 @@ txbox_pass = ttk.Entry(frame, show = '*')
 txbox_pass.grid(row = 2, column = 1, padx = 5, pady = 5)
 
 #Button
-btn1_send = ttk.Button(frame, text = 'Send', command = enviar)
+btn1_send = ttk.Button(frame, text = 'Send')
 btn1_send.grid(row = 3, column = 0, columnspan = 2, pady = 5)
+
+# Eventos de Boton
+btn1_send.bind('<Return>', enviar)		# Precina Enter
+btn1_send.bind('<Button-1>', enviar)		# Click Izquierdo
 
 frame.grid(row = 0, column = 0)
 
